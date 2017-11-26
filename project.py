@@ -10,6 +10,7 @@ import httplib2
 import json
 from flask import make_response
 import requests
+import string
 
 app = Flask(__name__)
 
@@ -30,7 +31,7 @@ session = DBSession()
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                    for x in xrange(32))
+        for x in xrange(32))
     login_session['state'] = state
     # return "The current session state is %s" % login_session['state']
     return render_template('login.html', STATE=state)
